@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Cats</title>
+</head>
+<body>
+    <article>
+        <div style="display:flex; justify-content: center; align-items: center; margin: 0 auto;">
+            <button id="prevBut" style="display: none;">Prev</button>
+            <img  id="imgWindow" src="images/1.jpg" alt="Cat" style="width: 300px; display: block;">
+            <button id="nextBut">Next</button>
+        </div>
+    </article>
+    
+    <script>
+        const imgFolder = "images/";
+        const maxImgs = 4;
+
+        const nextBut = document.getElementById("nextBut");
+        const prevBut = document.getElementById("prevBut");
+
+        let step = 0;
+
+        function showImage(step) { 
+            let curImg = step+1;
+            const imgSrc = imgFolder + curImg + ".jpg";
+
+            const imgElement = document.getElementById("imgWindow");
+            imgElement.src = imgSrc;
+
+            if(step == 0){
+            prevBut.style.display = "none";
+            }
+            else{
+                prevBut.style.display = "block";
+            }
+            if(step === maxImgs-1){
+                nextBut.style.display = "none";
+            }
+            else{
+                nextBut.style.display = "block";
+            }
+        }
+
+        prevBut.addEventListener("click", function () {
+            if (step > 0) {
+                step--;
+                showImage(step);
+            }
+        });
+
+        nextBut.addEventListener("click", function () {
+            if (step<maxImgs-1) {
+                step++;
+                showImage(step);
+            }
+        });
+        
+    </script>
+</body>
+</html>
